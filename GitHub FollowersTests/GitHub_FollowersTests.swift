@@ -29,5 +29,14 @@ class GitHub_FollowersTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testViewController_whenDidLoad_backgroundColorIsPink() {
+        let sut = ViewController()
+        
+        sut.viewDidLoad()
+        
+        let backgroundColor = sut.view.backgroundColor?.resolvedColor(with: sut.view.traitCollection)
+        XCTAssertEqual(backgroundColor, UIColor.systemPink.resolvedColor(with: sut.view.traitCollection))
+    }
 
 }
