@@ -30,13 +30,54 @@ class GitHub_FollowersTests: XCTestCase {
         }
     }
     
-    func testViewController_whenDidLoad_backgroundColorIsPink() {
-        let sut = ViewController()
+    func testSearchVC_whenDidLoad_backgroundColorIsPink() {
+        let sut = SearchVC()
         
         sut.viewDidLoad()
         
         let backgroundColor = sut.view.backgroundColor?.resolvedColor(with: sut.view.traitCollection)
         XCTAssertEqual(backgroundColor, UIColor.systemPink.resolvedColor(with: sut.view.traitCollection))
+    }
+    
+    func testFavoriteListVC_whenDidLoad_backgroundColorIsPink() {
+        let sut = FavoriteListVC()
+        
+        sut.viewDidLoad()
+        
+        let backgroundColor = sut.view.backgroundColor?.resolvedColor(with: sut.view.traitCollection)
+        XCTAssertEqual(backgroundColor, UIColor.systemBlue.resolvedColor(with: sut.view.traitCollection))
+    }
+    
+    func testCreateSearchNC_returnNavigationController() {
+        let sut = SceneDelegate()
+        
+        let navController = sut.createSearchNC()
+        XCTAssertTrue(navController.topViewController is SearchVC)
+    }
+    
+    func testCreateFavoritesNC_returnNavigationController() {
+        let sut = SceneDelegate()
+        
+        let navController = sut.createFavoritesNC()
+        XCTAssertTrue(navController.topViewController is FavoriteListVC)
+    }
+    
+    func testCreateTabBar_firstItemTitleisSearch() {
+        let sut = SceneDelegate()
+        
+        let tabBar = sut.createTabBar()
+        let title = tabBar.viewControllers?[0].title
+        
+        XCTAssertEqual(title, "Search")
+    }
+    
+    func testCreateTabBar_secondItemTitleisFavorites() {
+        let sut = SceneDelegate()
+        
+        let tabBar = sut.createTabBar()
+        let title = tabBar.viewControllers?[1].title
+        
+        XCTAssertEqual(title, "Favorites")
     }
 
 }
