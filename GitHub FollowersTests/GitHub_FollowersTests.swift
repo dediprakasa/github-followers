@@ -79,5 +79,13 @@ class GitHub_FollowersTests: XCTestCase {
         
         XCTAssertEqual(title, "Favorites")
     }
+    
+    func testConfigureGFButton_tamicIsFalse() {
+        let sut = GFButton()
+        
+        let tamic = sut.translatesAutoresizingMaskIntoConstraints
+        
+        XCTAssertEqual(tamic, false)
+    }
 
 }
